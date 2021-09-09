@@ -1,6 +1,9 @@
 # EPermission
 A simple Android permission application framework based on Kotlin.
 
+English | [中文](/README.zh.md)
+[![](https://jitpack.io/v/RickyHal/EPermission.svg)](https://jitpack.io/#RickyHal/EPermission)
+
 # Theory
 Add an invisible fragment to the current activity to encapsulate the permission application process.
 

@@ -1,6 +1,9 @@
 # EPermission
 一个基于Kotlin实现的简单的Android权限申请框架
 
+中文 | [English](/README.md)
+[![](https://jitpack.io/v/RickyHal/EPermission.svg)](https://jitpack.io/#RickyHal/EPermission)
+
 # 原理
 通过向当前Activity添加一个不可见的Fragment，从而实现权限申请流程的封装。
 
