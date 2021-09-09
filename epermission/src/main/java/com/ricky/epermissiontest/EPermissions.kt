@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.ricky.epermission
+package com.ricky.epermissiontest
 
 import android.Manifest
 
@@ -10,7 +10,7 @@ object EPermissions {
     val WRITE_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
     val CAMERA = arrayOf(Manifest.permission.CAMERA)
-    
+
     val CALENDAR = arrayOf(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR)
     val READ_CALENDAR = arrayOf(Manifest.permission.READ_CALENDAR)
     val WRITE_CALENDAR = arrayOf(Manifest.permission.WRITE_CALENDAR)

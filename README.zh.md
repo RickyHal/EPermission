@@ -92,6 +92,22 @@ fun FragmentActivity.runWithPermissions(
 ```
 
 # 使用方法
+项目build.gradle添加
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+        }
+}
+```
+
+模块build.gradle添加
+```groovy
+dependencies {
+    implementation 'com.github.RickyHal:EPermission:$latest_version'
+}
+```
 在Activity或者Fragment中直接调用
 ```kotlin
 // 申请存储权限

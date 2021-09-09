@@ -1,4 +1,4 @@
-package com.ricky.epermission
+package com.ricky.epermissiontest
 
 import android.os.Bundle
 import android.view.View

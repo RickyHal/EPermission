@@ -92,6 +92,23 @@ fun FragmentActivity.runWithPermissions(
 ```
 
 # Guide
+Project build.gradle
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+        }
+}
+```
+
+Module build.gradle
+```groovy
+dependencies {
+    implementation 'com.github.RickyHal:EPermission:$latest_version'
+}
+```
+
 Call directly in activity or fragment
 ```kotlin
 // Request Storage permission
