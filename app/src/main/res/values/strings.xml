@@ -8,9 +8,11 @@
     <string name="contact">CONTACT</string>
     <string name="call_log">CALL_LOG</string>
     <string name="sms">SMS</string>
+    <string name="multi_permissions">CAMERA,STORAGE</string>
 
     <string name="run_with_wrapped_permission">Run with wrapped permission</string>
     <string name="run_with_permission">Run with  permission</string>
     <string name="check_permission">Check permission</string>
     <string name="do_while_permission_granted">Do while permission granted</string>
+    <string name="request_multi_permission">Request multiple permissions</string>
 </resources>

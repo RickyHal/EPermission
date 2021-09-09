@@ -133,6 +133,19 @@ runWithStoragePermission(onFailed = {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
+Request multiple permissions
+```kotlin
+runWithPermissions(*EPermissions.CAMERA, *EPermissions.STORAGE,
+    onDenied = { deniedList ->
+        Toast.makeText(this, "permission denied $deniedList", Toast.LENGTH_SHORT).show()
+    },
+    onDeniedForever = { deniedForeverList ->
+        Toast.makeText(this, "permission denied forever $deniedForeverList", Toast.LENGTH_SHORT).show()
+    },
+    onAllGranted = {
+        Toast.makeText(this, "Permission all granted", Toast.LENGTH_SHORT).show()
+    })
+```
 If you do not need to deal with the unsuccessful condition
 ```kotlin
 runWithStoragePermission {

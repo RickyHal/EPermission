@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "STORAGE permission denied forever", Toast.LENGTH_SHORT).show()
             },
             onAllGranted = {
-                Toast.makeText(this, "STORAGE permission denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
             }
         )
     }
@@ -102,5 +102,18 @@ class MainActivity : AppCompatActivity() {
         doWhenPermissionGranted(*EPermissions.CAMERA) {
             Toast.makeText(this, "Do this when camera Permission is granted", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun requestMultiPermissions(view: View) {
+        runWithPermissions(*EPermissions.CAMERA, *EPermissions.STORAGE,
+            onDenied = { deniedList ->
+                Toast.makeText(this, "permission denied $deniedList", Toast.LENGTH_SHORT).show()
+            },
+            onDeniedForever = { deniedForeverList ->
+                Toast.makeText(this, "permission denied forever $deniedForeverList", Toast.LENGTH_SHORT).show()
+            },
+            onAllGranted = {
+                Toast.makeText(this, "Permission all granted", Toast.LENGTH_SHORT).show()
+            })
     }
 }
