@@ -110,7 +110,7 @@ runWithPermissions(
 ```
 or
 ```kotlin
-runWithSMSPermission(onFailed = {
+runWithStoragePermission(onFailed = {
     Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show()
 }) {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
@@ -118,7 +118,7 @@ runWithSMSPermission(onFailed = {
 ```
 If you do not need to deal with the unsuccessful condition
 ```
-runWithSMSPermission {
+runWithStoragePermission {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
