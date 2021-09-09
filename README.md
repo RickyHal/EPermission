@@ -117,7 +117,7 @@ runWithStoragePermission(onFailed = {
 }
 ```
 If you do not need to deal with the unsuccessful condition
-```
+```kotlin
 runWithStoragePermission {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
 }
