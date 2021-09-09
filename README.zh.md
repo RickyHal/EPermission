@@ -1,18 +1,18 @@
 # EPermission
-A simple Android permission application framework based on Kotlin.
+一个基于Kotlin实现的简单的Android权限申请框架
 
-# Theory
-Add an invisible fragment to the current activity to encapsulate the permission application process.
+# 原理
+通过向当前Activity添加一个不可见的Fragment，从而实现权限申请流程的封装。
 
-# Implementation
-### Invisible fragment
+# 实现
+### 不可见的Fragment
 ```kotlin
 internal class EPermissionFragment : Fragment() {
     private var mCallback: EPermissionCallback? = null
 
     fun requestPermission(callback: EPermissionCallback, vararg permissions: String) {
         mCallback = callback
-        // Request permissions
+        // 申请权限
         requestPermissions(permissions, CODE_REQUEST_PERMISSION)
     }
 
@@ -25,11 +25,11 @@ internal class EPermissionFragment : Fragment() {
             val deniedList = ArrayList<String>()
             val deniedForeverList = ArrayList<String>()
             grantResults.forEachIndexed { index, result ->
-                // Get the results
+                // 提取权限申请结果
                 if (result != PackageManager.PERMISSION_GRANTED) {
                     val permission = permissions[index]
                     deniedList.add(permission)
-                    // If user reject and don't show again
+                    // 是否拒绝且不再显示
                     if (!shouldShowRequestPermissionRationale(permission)) {
                         deniedForeverList.add(permission)
                     }
@@ -48,9 +48,9 @@ internal class EPermissionFragment : Fragment() {
 }
 ```
 
-### Encapsulate request permissions process
+### 封装权限申请
 ```kotlin
-// extend FragmentActivity
+// 扩展FragmentActivity
 fun FragmentActivity.runWithPermissions(
     vararg permissions: String,
     onDenied: (ArrayList<String>) -> Unit = { _ -> },
@@ -61,7 +61,7 @@ fun FragmentActivity.runWithPermissions(
         onAllGranted()
         return
     }
-    // Add an invisible Fragment
+    // 添加一个不可见的Fragment
     val isFragmentExist = supportFragmentManager.findFragmentByTag(EPermissionFragment.TAG)
     val fragment = if (isFragmentExist != null) {
         isFragmentExist as EPermissionFragment
@@ -83,15 +83,15 @@ fun FragmentActivity.runWithPermissions(
             onDeniedForever(deniedForeverList)
         }
     }
-    // Request permissions
+    // 申请权限
     fragment.requestPermission(callback, *permissions)
 }
 ```
 
-# Guide
-Call directly in activity or fragment
+# 使用方法
+在Activity或者Fragment中直接调用
 ```kotlin
-// Request Storage permission
+// 申请存储权限
 runWithPermissions(
     *EPermissions.STORAGE,
     onDenied = {
@@ -105,7 +105,7 @@ runWithPermissions(
     }
 )
 ```
-or
+也可以用下面这个简单的方法
 ```kotlin
 runWithSMSPermission(onFailed = {
     Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show()
@@ -113,19 +113,19 @@ runWithSMSPermission(onFailed = {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
-If you do not need to deal with the unsuccessful condition
+如果不需要处理失申请权限败的情况，也可以直接这样写
 ```
 runWithSMSPermission {
     Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
-If you only have permission to perform some operations, you can use the following methods
+如果某些操作执行的时候，只能有权限才去执行，则可以使用下面的方法
 ```kotlin
 doWhenPermissionGranted(*EPermissions.CAMERA){
     Toast.makeText(this, "Do this when camera Permission is granted", Toast.LENGTH_SHORT).show()
 }
 ```
-Check permissions
+检查权限
 ```kotlin
 if (checkPermissions(*EPermissions.CAMERA)) {
     Toast.makeText(this, "Camera Permission is granted", Toast.LENGTH_SHORT).show()

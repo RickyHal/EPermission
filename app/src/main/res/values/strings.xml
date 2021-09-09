@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">EPermission</string>
+    <string name="storage">STORAGE</string>
+    <string name="camera">CAMERA</string>
+    <string name="location">Location</string>
+    <string name="read_phone_state">READ_PHONE_STATE</string>
+    <string name="calendar">CALENDAR</string>
+    <string name="contact">CONTACT</string>
+    <string name="call_log">CALL_LOG</string>
+    <string name="sms">SMS</string>
+
+    <string name="run_with_wrapped_permission">Run with wrapped permission</string>
+    <string name="run_with_permission">Run with  permission</string>
+    <string name="check_permission">Check permission</string>
+    <string name="do_while_permission_granted">Do while permission granted</string>
+</resources>
