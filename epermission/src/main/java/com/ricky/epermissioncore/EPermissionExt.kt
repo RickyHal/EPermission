@@ -1,7 +1,7 @@
 @file:Suppress("unused")
 
 
-package com.ricky.epermissiontest
+package com.ricky.epermissioncore
 
 import android.Manifest
 import androidx.fragment.app.Fragment

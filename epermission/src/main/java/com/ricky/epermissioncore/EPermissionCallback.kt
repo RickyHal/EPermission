@@ -1,4 +1,4 @@
-package com.ricky.epermissiontest
+package com.ricky.epermissioncore
 
 /**
  * @ClassName: PermissionCallback

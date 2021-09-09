@@ -1,9 +1,10 @@
-package com.ricky.epermissiontest
+package com.ricky.epermission
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ricky.epermissioncore.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

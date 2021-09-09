@@ -1,4 +1,4 @@
-package com.ricky.epermissiontest
+package com.ricky.epermissioncore
 
 import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
