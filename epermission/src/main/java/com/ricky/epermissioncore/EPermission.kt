@@ -2,8 +2,10 @@
 
 package com.ricky.epermissioncore
 
+import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 
@@ -83,6 +85,15 @@ fun Fragment.doWhenPermissionGranted(
     }
 }
 
+fun Context.doWhenPermissionGranted(
+    vararg permissions: String,
+    block: () -> Unit
+) {
+    if (checkPermissions(*permissions)) {
+        block()
+    }
+}
+
 fun FragmentActivity.checkPermissions(
     vararg permissions: String
 ): Boolean {
@@ -97,6 +108,17 @@ fun Fragment.checkPermissions(
     return permissions.all {
         ActivityCompat.checkSelfPermission(
             requireContext(),
+            it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+}
+
+fun Context.checkPermissions(
+    vararg permissions: String
+): Boolean {
+    return permissions.all {
+        ContextCompat.checkSelfPermission(
+            this,
             it
         ) == PackageManager.PERMISSION_GRANTED
     }
