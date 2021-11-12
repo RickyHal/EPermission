@@ -7,7 +7,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.ricky.epermission"
+        applicationId "com.ricky.epermission.demo"
         minSdk 21
         targetSdk 30
         versionCode 1

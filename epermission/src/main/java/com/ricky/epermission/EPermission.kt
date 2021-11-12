@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package com.ricky.epermissioncore
+package com.ricky.epermission
 
 import android.content.Context
 import android.content.pm.PackageManager
