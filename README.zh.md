@@ -127,9 +127,9 @@ runWithPermissions(
 也可以用下面这个简单的方法
 ```kotlin
 runWithStoragePermission(onFailed = {
-    Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission denied", Toast.LENGTH_SHORT).show()
 }) {
-    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
 一次申请多个权限
@@ -148,7 +148,7 @@ runWithPermissions(*EPermissions.CAMERA, *EPermissions.STORAGE,
 如果不需要处理失申请权限败的情况，也可以直接这样写
 ```kotlin
 runWithStoragePermission {
-    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
 如果某些操作执行的时候，只能有权限才去执行，则可以使用下面的方法
