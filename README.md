@@ -50,9 +50,9 @@ or
 
 ```kotlin
 runWithStoragePermission(onFailed = {
-    Toast.makeText(this, "SMS permission denied", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission denied", Toast.LENGTH_SHORT).show()
 }) {
-    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
 
@@ -75,7 +75,7 @@ If you do not need to deal with the unsuccessful condition
 
 ```kotlin
 runWithStoragePermission {
-    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
 

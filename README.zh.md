@@ -75,7 +75,7 @@ runWithPermissions(*EPermissions.CAMERA, *EPermissions.STORAGE,
 
 ```kotlin
 runWithStoragePermission {
-    Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, "STORAGE permission granted", Toast.LENGTH_SHORT).show()
 }
 ```
 
