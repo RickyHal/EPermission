@@ -5,7 +5,7 @@
 中文 | [English](/README.md)
 [![](https://jitpack.io/v/RickyHal/EPermission.svg)](https://jitpack.io/#RickyHal/EPermission)
 
-<img src="/results/guide.png" width="500">
+<img src="/results/guide.png">
 
 # 使用方法
 

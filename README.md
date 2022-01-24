@@ -5,7 +5,7 @@ A simple Android permission application framework based on Kotlin.
 English | [中文](/README.zh.md)
 [![](https://jitpack.io/v/RickyHal/EPermission.svg)](https://jitpack.io/#RickyHal/EPermission)
 
-<img src="/results/guide.png" width="500">
+<img src="/results/guide.png">
 
 # Guide
 
