@@ -15,11 +15,21 @@ internal class EPermissionFragment : Fragment() {
         const val CODE_REQUEST_PERMISSION = 777
     }
 
+    private val mNormalPermissions = mutableSetOf<String>()
     private var mCallback: EPermissionCallback? = null
 
     fun requestPermission(callback: EPermissionCallback, vararg permissions: String) {
         mCallback = callback
-        requestPermissions(permissions, CODE_REQUEST_PERMISSION)
+        scrapPermissions(*permissions)
+        requestPermissions(mNormalPermissions.toTypedArray(), CODE_REQUEST_PERMISSION)
+        mNormalPermissions.clear()
+    }
+
+    private fun scrapPermissions(vararg permissions: String) {
+        mNormalPermissions.clear()
+        permissions.forEach {
+            mNormalPermissions.add(it)
+        }
     }
 
     override fun onRequestPermissionsResult(

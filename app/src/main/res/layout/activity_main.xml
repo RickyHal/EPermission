@@ -71,6 +71,12 @@
             android:onClick="requestSMSPermission"
             android:text="@string/sms" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="requestSystemAlertPermission"
+            android:text="@string/system_alert" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,6 +102,12 @@
             android:layout_height="wrap_content"
             android:onClick="checkCameraPermission"
             android:text="@string/camera" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkSystemAlertPermission"
+            android:text="@string/system_alert" />
 
         <TextView
             android:layout_width="match_parent"

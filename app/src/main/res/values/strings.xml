@@ -8,6 +8,7 @@
     <string name="contact">CONTACT</string>
     <string name="call_log">CALL_LOG</string>
     <string name="sms">SMS</string>
+    <string name="system_alert">SYSTEM_ALERT_WINDOW</string>
     <string name="multi_permissions">CAMERA,STORAGE</string>
 
     <string name="run_with_wrapped_permission">Run with wrapped permission</string>

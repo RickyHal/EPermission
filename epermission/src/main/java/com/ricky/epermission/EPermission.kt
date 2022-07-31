@@ -3,8 +3,8 @@
 package com.ricky.epermission
 
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -15,12 +15,20 @@ import androidx.fragment.app.FragmentActivity
  * @Author: Ricky Hal
  * @Date: 2021/7/28 20:50
  */
+
+/**
+ *------------------------------ runWithPermissions
+ */
 fun FragmentActivity.runWithPermissions(
     vararg permissions: String,
     onDenied: (ArrayList<String>) -> Unit = { _ -> },
     onDeniedForever: (ArrayList<String>) -> Unit = { _ -> },
     onAllGranted: () -> Unit = {}
 ) {
+    val unDefinedPermissions = checkManifestPermissions(permissions.asList())
+    if (unDefinedPermissions.isNotEmpty()) {
+        onDenied(unDefinedPermissions)
+    }
     if (checkPermissions(*permissions)) {
         onAllGranted()
         return
@@ -55,10 +63,6 @@ fun Fragment.runWithPermissions(
     onDeniedForever: (ArrayList<String>) -> Unit = { _ -> },
     onAllGranted: () -> Unit = {}
 ) {
-    if (checkPermissions(*permissions)) {
-        onAllGranted()
-        return
-    }
     requireActivity().runWithPermissions(
         *permissions,
         onDenied = onDenied,
@@ -67,15 +71,28 @@ fun Fragment.runWithPermissions(
     )
 }
 
-fun FragmentActivity.doWhenPermissionGranted(
+fun Context.runWithPermissions(
     vararg permissions: String,
-    block: () -> Unit
+    onDenied: (ArrayList<String>) -> Unit = { _ -> },
+    onDeniedForever: (ArrayList<String>) -> Unit = { _ -> },
+    onAllGranted: () -> Unit = {}
 ) {
     if (checkPermissions(*permissions)) {
-        block()
+        onAllGranted()
+        return
     }
+    val activity = toActivity() ?: throw IllegalStateException("You must use activity to request permission.")
+    activity.runWithPermissions(
+        *permissions,
+        onDenied = onDenied,
+        onDeniedForever = onDeniedForever,
+        onAllGranted = onAllGranted
+    )
 }
 
+/**
+ *------------------------------ doWhenPermissionGranted
+ */
 fun Fragment.doWhenPermissionGranted(
     vararg permissions: String,
     block: () -> Unit
@@ -94,23 +111,13 @@ fun Context.doWhenPermissionGranted(
     }
 }
 
-fun FragmentActivity.checkPermissions(
-    vararg permissions: String
-): Boolean {
-    return permissions.all {
-        ActivityCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
-    }
-}
-
+/**
+ *------------------------------ checkPermissions
+ */
 fun Fragment.checkPermissions(
     vararg permissions: String
 ): Boolean {
-    return permissions.all {
-        ActivityCompat.checkSelfPermission(
-            requireContext(),
-            it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
+    return requireContext().checkPermissions(*permissions)
 }
 
 fun Context.checkPermissions(
@@ -121,5 +128,13 @@ fun Context.checkPermissions(
             this,
             it
         ) == PackageManager.PERMISSION_GRANTED
+    }
+}
+
+private fun Context.toActivity(): FragmentActivity? {
+    return when (this) {
+        is FragmentActivity -> this
+        is ContextWrapper -> baseContext as? FragmentActivity
+        else -> null
     }
 }

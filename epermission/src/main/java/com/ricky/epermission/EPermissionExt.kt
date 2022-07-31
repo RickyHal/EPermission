@@ -3,9 +3,8 @@
 
 package com.ricky.epermission
 
-import android.Manifest
+import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 
 /**
  * @ClassName: EPermissionExt.kt
@@ -13,40 +12,25 @@ import androidx.fragment.app.FragmentActivity
  * @Author: Ricky Hal
  * @Date: 2021/7/28 20:50
  */
-
-fun FragmentActivity.runWithStoragePermission(
-    onFailed: () -> Unit = {},
-    onSuccess: () -> Unit = {}
-) {
-    runWithPermissions(
-        *EPermissions.STORAGE,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
-}
-
 fun Fragment.runWithStoragePermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.STORAGE,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithStoragePermission(onFailed, onSuccess)
 }
 
-
-fun FragmentActivity.runWithCameraPermission(
+fun Context.runWithStoragePermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        Manifest.permission.CAMERA,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.STORAGE,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -55,22 +39,21 @@ fun Fragment.runWithCameraPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        Manifest.permission.CAMERA,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithCalendarPermission(onFailed, onSuccess)
 }
 
-fun FragmentActivity.runWithLocationPermission(
+fun Context.runWithCameraPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.LOCATION,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.CAMERA,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -79,22 +62,21 @@ fun Fragment.runWithLocationPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.LOCATION,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithLocationPermission(onFailed, onSuccess)
 }
 
-fun FragmentActivity.runWithContactPermission(
+fun Context.runWithLocationPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.CONTACT,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.LOCATION,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -103,22 +85,21 @@ fun Fragment.runWithContactPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.CONTACT,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithContactPermission(onFailed, onSuccess)
 }
 
-fun FragmentActivity.runWithPhoneStatePermission(
+fun Context.runWithContactPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.READ_PHONE_STATE,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.CONTACT,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -127,22 +108,21 @@ fun Fragment.runWithPhoneStatePermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.READ_PHONE_STATE,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithPhoneStatePermission(onFailed, onSuccess)
 }
 
-fun FragmentActivity.runWithCalendarPermission(
+fun Context.runWithPhoneStatePermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.READ_CALENDAR,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.READ_PHONE_STATE,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -151,23 +131,21 @@ fun Fragment.runWithCalendarPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.CALENDAR,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithCalendarPermission(onFailed, onSuccess)
 }
 
-
-fun FragmentActivity.runWithCallLogPermission(
+fun Context.runWithCalendarPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.CALL_LOG,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.READ_CALENDAR,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -176,23 +154,21 @@ fun Fragment.runWithCallLogPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
-    runWithPermissions(
-        *EPermissions.CALL_LOG,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
-        onAllGranted = onSuccess
-    )
+    requireContext().runWithCallLogPermission(onFailed, onSuccess)
 }
 
-
-fun FragmentActivity.runWithSMSPermission(
+fun Context.runWithCallLogPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    var isDenied = false
     runWithPermissions(
-        *EPermissions.SMS,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        *EPermissions.CALL_LOG,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
@@ -201,11 +177,44 @@ fun Fragment.runWithSMSPermission(
     onFailed: () -> Unit = {},
     onSuccess: () -> Unit = {}
 ) {
+    requireContext().runWithSMSPermission(onFailed, onSuccess)
+}
+
+fun Context.runWithSMSPermission(
+    onFailed: () -> Unit = {},
+    onSuccess: () -> Unit = {}
+) {
+    var isDenied = false
     runWithPermissions(
         *EPermissions.SMS,
-        onDenied = { onFailed() },
-        onDeniedForever = { onFailed() },
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
         onAllGranted = onSuccess
     )
 }
 
+fun Fragment.runWithSystemAlertPermission(
+    onFailed: () -> Unit = {},
+    onSuccess: () -> Unit = {}
+) {
+    requireContext().runWithSystemAlertPermission(onFailed, onSuccess)
+}
+
+fun Context.runWithSystemAlertPermission(
+    onFailed: () -> Unit = {},
+    onSuccess: () -> Unit = {}
+) {
+    var isDenied = false
+    runWithPermissions(
+        *EPermissions.SYSTEM_ALERT_WINDOW,
+        onDenied = {
+            onFailed()
+            isDenied = true
+        },
+        onDeniedForever = { if (!isDenied) onFailed() },
+        onAllGranted = onSuccess
+    )
+}

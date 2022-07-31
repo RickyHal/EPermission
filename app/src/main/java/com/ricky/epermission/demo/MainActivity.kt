@@ -76,6 +76,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun requestSystemAlertPermission(view: View) {
+        runWithSystemAlertPermission(onFailed = {
+            Toast.makeText(this, "System Alert permission denied", Toast.LENGTH_SHORT).show()
+        }) {
+            Toast.makeText(this, "System Alert permission granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     fun runWithStoragePermission(view: View) {
         runWithPermissions(
             *EPermissions.STORAGE,
@@ -96,6 +104,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Camera Permission is granted", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Camera Permission is not granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun checkSystemAlertPermission(view: View) {
+        if (checkPermissions(*EPermissions.SYSTEM_ALERT_WINDOW)) {
+            Toast.makeText(this, "System Alert Permission is granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "System Alert Permission is not granted", Toast.LENGTH_SHORT).show()
         }
     }
 
